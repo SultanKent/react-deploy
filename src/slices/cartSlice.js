@@ -52,7 +52,7 @@ const initialState = [
     image: potatoJpg,
     good: 'Картошка',
     pack: '(мешок)',
-    price: '38Р/кг',
+    price: '38Р/500кг',
     priceInNumbers: 13,
     unit: 'кг',
     value: 38, 
@@ -79,13 +79,6 @@ const cartSlice = createSlice({
         item.value += 1;
       }
     },
-    // remove(state, action) {
-    //   const { id } = action.payload;
-    //   const item = state.find((item) => item.id === id);
-    //   if (item && item.value >= 2) {
-    //     item.value -= 1;
-    //   }
-    // },
     remove(state, action) {
       const { id } = action.payload;
       const item = state.find((item) => item.id === id);

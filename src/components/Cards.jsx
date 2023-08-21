@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add, remove, updateProductValue } from '../slices/cartSlice';
 import { addTo } from '../slices/bagSlice';
 import { useState } from 'react';
+import CartIcon from './Cart-icon';
 
 const Cards = () => {
   const product = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  
+  const [cartIconVisible, setCartIconVisible] = useState(false);
+
   const handleInputChange = (newValue, product) => {
     const updatedValue = newValue === '' ? '' : parseInt(newValue);
     dispatch(updateProductValue({ id: product.id, value: updatedValue }));
@@ -27,10 +29,12 @@ const Cards = () => {
 
   const addToBag = (product) => {
     dispatch(addTo(product));
+    setCartIconVisible(true);
   };
 
   return (
     <section id="catalog" className="cards">
+      {cartIconVisible && <CartIcon />}
       <h2>Наши товары</h2>
       <div className="cards-grid">
         {product.map((product) => (

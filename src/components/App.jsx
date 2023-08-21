@@ -11,7 +11,6 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <CartIcon />
         <Main />
         <Cards />
         <Footer />
