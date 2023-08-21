@@ -22,6 +22,7 @@ const initialState = [
     priceInNumbers: 450,
     unit: 'кг',
     value: 1,
+    boxSize: 1, // Обычный товар, 1 единица
   },
   {
     id: '2',
@@ -32,6 +33,7 @@ const initialState = [
     priceInNumbers: 50,
     unit: 'л',
     value: 1,
+    boxSize: 1, // Обычный товар, 1 единица
   },
   {
     id: '3',
@@ -41,7 +43,8 @@ const initialState = [
     price: '50Р/10шт',
     priceInNumbers: 5,
     unit: 'шт',
-    value: 1,
+    value: 10, 
+    boxSize: 10, 
   },
   {
     id: '4',
@@ -50,11 +53,13 @@ const initialState = [
     good: 'Картошка',
     pack: '(мешок)',
     price: '38Р/кг',
-    priceInNumbers: 38,
+    priceInNumbers: 13,
     unit: 'кг',
-    value: 1,
+    value: 38, 
+    boxSize: 38, 
   },
 ];
+
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -74,11 +79,25 @@ const cartSlice = createSlice({
         item.value += 1;
       }
     },
+    // remove(state, action) {
+    //   const { id } = action.payload;
+    //   const item = state.find((item) => item.id === id);
+    //   if (item && item.value >= 2) {
+    //     item.value -= 1;
+    //   }
+    // },
     remove(state, action) {
       const { id } = action.payload;
       const item = state.find((item) => item.id === id);
-      if (item && item.value >= 2) {
-        item.value -= 1;
+      if (item) {
+        if (item.boxSize && item.boxSize > 1) {
+          const totalBoxItems = item.value - item.boxSize;
+          if (totalBoxItems >= 0) {
+            item.value = totalBoxItems;
+          }
+        } else if (item.value >= 2) {
+          item.value -= 1;
+        }
       }
     },
   },

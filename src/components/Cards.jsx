@@ -7,22 +7,23 @@ const Cards = () => {
   const product = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   
-  // const handleInputChange = (newValue, product) => {
-  //   dispatch(updateProductValue({ id: product.id, value: newValue }));
-  // };
   const handleInputChange = (newValue, product) => {
-    const updatedValue = parseInt(newValue) || 0; // Преобразуем введенное значение в число или 0
+    const updatedValue = newValue === '' ? '' : parseInt(newValue);
     dispatch(updateProductValue({ id: product.id, value: updatedValue }));
-  };
-
+  };  
+   
   const addToCart = (product) => {
-    dispatch(add({ id: product.id }));
-  }; 
-  
-  
-  const removeToCart = (product) => {
-    dispatch(remove({ id: product.id }));
+    if (product.boxSize && product.boxSize > 1) {
+      const totalBoxItems = product.value + product.boxSize;
+      dispatch(updateProductValue({ id: product.id, value: totalBoxItems }));
+    } else {
+      dispatch(add({ id: product.id }));
+    }
   };
+  
+  // const removeToCart = (product) => {
+  //   dispatch(remove({ id: product.id }));
+  // };
 
   const addToBag = (product) => {
     dispatch(addTo(product));
@@ -81,6 +82,7 @@ const Cards = () => {
               onClick={() => addToBag(product)}
               type="button"
               className="toCard"
+              disabled={product.value <= 0}
             >
               В корзину
             </button>
