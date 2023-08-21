@@ -293,7 +293,6 @@ picture {
 
 .cards {
   padding-top: 225px;
-
   &-grid {
     @include centry(88%);
     display: grid;
@@ -420,6 +419,7 @@ picture {
       grid-template-columns: repeat(2, 320px);
       row-gap: 1em;
       column-gap: 1em;
+      margin-bottom: 200px;
     }
   }
 }

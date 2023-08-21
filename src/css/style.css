@@ -603,6 +603,7 @@ picture img {
 
 .cards {
   padding-top: 225px;
+  padding-bottom: 200px;
 }
 .cards-grid {
   margin: 0 auto;
@@ -617,7 +618,7 @@ picture img {
   margin: 0 auto;
   background-color: #eff7fe;
   padding: 1em 2em;
-  height: 395px;
+  height: 425px;
   border-radius: 21px;
 }
 .cards .card-img {
@@ -718,6 +719,13 @@ picture img {
 .cards .card .toCard:active {
   position: relative;
   top: -3px;
+}
+
+@media (max-width: 700px) {
+.cards .card-img {
+  max-width: 300px;
+  width: unset;
+}
 }
 
 @media (min-width: 700px) {

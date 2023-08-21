@@ -1,15 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { add, remove } from '../slices/cartSlice';
+import { add, remove, updateProductValue } from '../slices/cartSlice';
 import { addTo } from '../slices/bagSlice';
+import { useState } from 'react';
 
 const Cards = () => {
   const product = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  
+  // const handleInputChange = (newValue, product) => {
+  //   dispatch(updateProductValue({ id: product.id, value: newValue }));
+  // };
+  const handleInputChange = (newValue, product) => {
+    const updatedValue = parseInt(newValue) || 0; // Преобразуем введенное значение в число или 0
+    dispatch(updateProductValue({ id: product.id, value: updatedValue }));
+  };
 
   const addToCart = (product) => {
     dispatch(add({ id: product.id }));
-  };
-  // eslint-disable-next-line
+  }; 
+  
+  
   const removeToCart = (product) => {
     dispatch(remove({ id: product.id }));
   };
@@ -59,6 +69,7 @@ const Cards = () => {
                   max="500"
                   placeholder={product.placeholder}
                   value={product.value}
+                  onChange={(event) => handleInputChange(event.target.value, product)}
                 />
                 <span>{product.unit}</span>
               </div>

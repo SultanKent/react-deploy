@@ -5,7 +5,7 @@ const initialState = []
 const bagSlice = createSlice({
     name: 'bag',
     initialState,
-    reducers: {
+    reducers: {                    
         addTo(state, action) {
             const item = action.payload;
             const existingItem = state.find((i) => i.id === item.id);
@@ -13,6 +13,7 @@ const bagSlice = createSlice({
             if (existingItem) {
                 // Если товар уже есть в корзине, увеличиваем количество
                 existingItem.value += item.value;
+
             } else {
                 // Иначе, добавляем товар в корзину
                 state.push(item);
