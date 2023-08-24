@@ -52,7 +52,7 @@ const initialState = [
     image: potatoJpg,
     good: 'Картошка',
     pack: '(мешок)',
-    price: '38Р/500кг',
+    price: '500P/38кг',
     priceInNumbers: 13,
     unit: 'кг',
     value: 38, 

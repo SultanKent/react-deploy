@@ -12,7 +12,7 @@ const CartIcon = () => {
   const hideCounterRef = useRef(null);
 
   if (hideCounterRef.current) {
-    hideCounterRef.current.style.display = count_products ? 'block' : '';
+    hideCounterRef.current.style.display = count_products ? 'block' : 'block';
   }
   
   return (

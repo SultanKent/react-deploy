@@ -34,7 +34,7 @@ const Cards = () => {
 
   return (
     <section id="catalog" className="cards">
-      {cartIconVisible && <CartIcon />}
+      {cartIconVisible && <CartIcon cartIconVisible={cartIconVisible} />}
       <h2>Наши товары</h2>
       <div className="cards-grid">
         {product.map((product) => (
